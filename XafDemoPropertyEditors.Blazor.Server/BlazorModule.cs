@@ -9,6 +9,8 @@ using DevExpress.ExpressApp.Model.Core;
 using DevExpress.ExpressApp.Model.DomainLogics;
 using DevExpress.ExpressApp.Model.NodeGenerators;
 using DevExpress.Persistent.BaseImpl;
+using DevExpress.ExpressApp.Utils;
+using XafDemoPropertyEditors.Blazor.Server.Editors;
 
 namespace XafDemoPropertyEditors.Blazor.Server;
 
@@ -24,6 +26,8 @@ public sealed class XafDemoPropertyEditorsBlazorModule : ModuleBase {
         e.Handled = true;
     }
     public XafDemoPropertyEditorsBlazorModule() {
+        DataAccessModeHelper.RegisterEditorSupportedModes(typeof(PictureItemListEditor),
+                                new[] { CollectionSourceDataAccessMode.Client });
     }
     public override IEnumerable<ModuleUpdater> GetModuleUpdaters(IObjectSpace objectSpace, Version versionFromDB) {
         return ModuleUpdater.EmptyModuleUpdaters;
