@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <NavigationItems NavigationStyle="Accordion" />
+  <Options UIType="TabbedMDI" RestoreTabbedMdiLayout="False" ShowTabImage="True" />
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="24.2.1.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <DetailView Id="ProperyEditorsDo_DetailView">
+      <Items>
+        <PropertyEditor Id="Nombre" PropertyEditorType="XafDemoPropertyEditors.Blazor.Server.Editors.CustomStringPropertyEditor" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100">
+            <LayoutGroup Id="ProperyEditorsDo" RelativeSize="100">
+              <LayoutItem Id="Apellidos" Index="0" RelativeSize="5.055292259083728" />
+              <LayoutItem Id="Nombre" Index="1" RelativeSize="94.94470774091627" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

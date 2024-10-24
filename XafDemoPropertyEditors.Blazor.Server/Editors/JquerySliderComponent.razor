@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@using XafDemoPropertyEditors.Blazor.Server.Editors
+
+@inject IJSRuntime JS
+
+<div id="slider"></div>
+
+
+@code {
+    [Parameter]
+    public int Value { get; set; }
+
+    [Parameter]
+    public EventCallback<int> ValueChanged { get; set; }
+
+    protected override async void OnInitialized()
+    {
+        base.OnInitialized();
+        // Register the instance with JS using JSRuntime
+        await JS.InvokeVoidAsync("registerBlazorInstance", DotNetObjectReference.Create(this));
+    }
+    [JSInvokable]
+    public void ReceiveValueFromJsInstance(int value)
+    {
+        Value = value;
+        ValueChanged.InvokeAsync(Value);
+        //StateHasChanged(); // Re-render the UI with the new value
+    }
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            JS.InvokeVoidAsync("InitJQuerySlider", Value);
+        }
+       
+      
+    }
+
+
+}

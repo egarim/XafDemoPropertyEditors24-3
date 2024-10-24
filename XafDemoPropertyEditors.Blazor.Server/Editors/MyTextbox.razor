@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@using XafDemoPropertyEditors.Blazor.Server.Editors
+
+@inject IJSRuntime JS
+
+<input value=@Value maxlength="10" @onchange="OnValueChanged" />
+
+
+@code {
+    [Parameter]
+    public string Value { get; set; }
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
+    private async Task OnValueChanged(ChangeEventArgs e)
+    {
+        var newValue = e.Value.ToString();
+        await ValueChanged.InvokeAsync(newValue);
+    }
+}
